@@ -8,9 +8,7 @@ import NotFound from '@/components/NotFound'
 const Post = ({ post, blockMap }) => {
   const router = useRouter()
   if (router.isFallback) {
-    return (
-      <Loading />
-    )
+    return <Loading />
   }
   if (!post) {
     return <NotFound statusCode={404} />
@@ -30,7 +28,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { slug } }) {
   const posts = await getAllPosts({ onlyNewsletter: false })
-  const post = posts.find((t) => t.slug === slug)
+  const post = posts.find((t) => t.slug === slug || t.title === slug)
 
   try {
     const blockMap = await getPostBlocks(post.id)

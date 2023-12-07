@@ -19,7 +19,14 @@ export async function getStaticProps() {
     // return { props: { post: null, blockMap: null } }
   }
 
-  const postsToShow = posts.slice(0, BLOG.postsPerPage)
+  const postsToShow = posts
+    .slice(0, BLOG.postsPerPage)
+    // 如果没有设置 slug，使用 title 代替
+    .map(post => ({
+      ...post,
+      slug: post.slug || post.title,
+    }))
+
   const totalPosts = posts.length
   const showNext = totalPosts > BLOG.postsPerPage
   return {
