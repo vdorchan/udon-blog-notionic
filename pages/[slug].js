@@ -6,7 +6,7 @@ import Loading from '@/components/Loading'
 import NotFound from '@/components/NotFound'
 import CustomPageLayout from '@/components/customPage'
 
-const Post = ({ post, blockMap, slug, authorName }) => {
+const Post = ({ post, blockMap, slug, authorName, customPages }) => {
   const router = useRouter()
   if (router.isFallback) {
     return <Loading />
@@ -15,7 +15,7 @@ const Post = ({ post, blockMap, slug, authorName }) => {
     return <NotFound statusCode={404} />
   }
 
-  if (BLOG.customPages.includes(slug)) {
+  if (customPages.includes(slug)) {
     return (
       <CustomPageLayout
         blockMap={blockMap}
@@ -50,7 +50,8 @@ export async function getStaticProps({ params: { slug } }) {
         post,
         blockMap,
         slug,
-        authorName: BLOG.authorName
+        authorName: BLOG.authorName,
+        customPages: BLOG.customPages
       },
       revalidate: 1
     }
