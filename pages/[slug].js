@@ -4,8 +4,9 @@ import BLOG from '@/blog.config'
 import { useRouter } from 'next/router'
 import Loading from '@/components/Loading'
 import NotFound from '@/components/NotFound'
+import CustomPageLayout from '@/components/customPage'
 
-const Post = ({ post, blockMap }) => {
+const Post = ({ post, blockMap, slug }) => {
   const router = useRouter()
   if (router.isFallback) {
     return <Loading />
@@ -13,6 +14,13 @@ const Post = ({ post, blockMap }) => {
   if (!post) {
     return <NotFound statusCode={404} />
   }
+
+  if (BLOG.customPages.includes(slug)) {
+    return (
+      <CustomPageLayout blockMap={blockMap} frontMatter={post} slug={slug} />
+    )
+  }
+
   return (
     <Layout blockMap={blockMap} frontMatter={post} fullWidth={post.fullWidth} />
   )
@@ -35,7 +43,8 @@ export async function getStaticProps({ params: { slug } }) {
     return {
       props: {
         post,
-        blockMap
+        blockMap,
+        slug
       },
       revalidate: 1
     }
