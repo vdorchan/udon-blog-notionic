@@ -6,7 +6,7 @@ import Loading from '@/components/Loading'
 import NotFound from '@/components/NotFound'
 import CustomPageLayout from '@/components/customPage'
 
-const Post = ({ post, blockMap, slug }) => {
+const Post = ({ post, blockMap, slug, authorName }) => {
   const router = useRouter()
   if (router.isFallback) {
     return <Loading />
@@ -17,7 +17,12 @@ const Post = ({ post, blockMap, slug }) => {
 
   if (BLOG.customPages.includes(slug)) {
     return (
-      <CustomPageLayout blockMap={blockMap} frontMatter={post} slug={slug} />
+      <CustomPageLayout
+        blockMap={blockMap}
+        frontMatter={post}
+        slug={slug}
+        authorName={authorName}
+      />
     )
   }
 
@@ -44,7 +49,8 @@ export async function getStaticProps({ params: { slug } }) {
       props: {
         post,
         blockMap,
-        slug
+        slug,
+        authorName: BLOG.authorName
       },
       revalidate: 1
     }

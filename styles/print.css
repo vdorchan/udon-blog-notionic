@@ -6,11 +6,14 @@
     rgba(148, 187, 233, 1) 100%
   );
 }
+.print .observer-element {
+  display: none;
+}
 .print .print-content {
   background-color: #fff;
   size: A4;
   line-height: 1.4;
-  margin-top: 15px;
+  margin-top: 30px;
   font-size: 10pt;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
@@ -27,16 +30,17 @@
   margin-right: 12pt;
 }
 @media print {
-  .print {
+  .print .print-content {
     border: none;
     margin-top: 0;
     box-shadow: none;
     border-radius: 0;
   }
-  body {
-    background-color: #fff;
+  .print body {
+    background: #fff!important;
   }
 }
+
 
 .print .notion-column {
   padding-top: 0;
@@ -103,6 +107,11 @@
 .print .notion-block-0853323313e94175a7dc374ce8d36f53 > div:nth-child(4) {
   padding-bottom: 4mm;
 }
+.print .notion-blank {
+  min-height: 6pt;
+  font-size: 6pt;
+  height: 6pt;
+}
 
 /* 正文部分 */
 .notion-block-9ca7983d616746ff9998a4f686376dff {
@@ -136,4 +145,9 @@
 }
 .notion-block-2bc4f4502a6d4847874dd013591f49cb .notion-page-icon-inline {
   margin-left: 4pt;
+}
+
+.print .sticky-nav, 
+.print .footer {
+  display: none;
 }
