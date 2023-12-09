@@ -32,18 +32,12 @@ const BlogPost = ({ post }) => {
               </span>
             </header>
             <div className='flex items-center mb-2 mt-1 gap-1'>
-              {post.tags.reduce(
-                (prev, tag, index) => (
-                  <>
-                    {prev}
-                    <span className='flex items-center text-xs text-gray-600 gap-1'>
-                      <TagIcon className='text-xs' width={16} height={16} />
-                      {tag}
-                    </span>
-                  </>
-                ),
-                ''
-              )}
+              {post.tags?.map((tag) => (
+                <span className='flex items-center text-xs text-gray-600 gap-1'>
+                  <TagIcon className='text-xs' width={16} height={16} />
+                  {tag}
+                </span>
+              ))}
             </div>
             <p className='font-light hidden md:block leading-8 text-gray-700 dark:text-gray-300'>
               {post.summary}
