@@ -1,0 +1,34 @@
+.typing-wrapper {
+  display: grid;
+  place-items: center;
+  padding: 20px 0;
+}
+
+.typing-text {
+  width: 14em;
+  animation: typing 6s steps(14) infinite,
+    blink 0.5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  font-family: monospace;
+  font-size: 2em;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  60% {
+    width: 14em;
+  }
+  100% {
+    width: 14em;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}

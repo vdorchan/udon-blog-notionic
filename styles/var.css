@@ -1,0 +1,23 @@
+:root {
+  --fg-color: #4b5563;
+  --bg-color: #f6f8fa;
+  --primary-color: rgba(29, 78, 216, 0.7);
+}
+
+.dark {
+  --fg-color: #e5e7eb;
+  --bg-color: #040808;
+}
+
+.primary-color {
+  color: var(--primary-color);
+}
+
+.primary-color-with-hover {
+  color: var(--primary-color);
+}
+.primary-color-with-hover:hover,
+.primary-color-with-hover:active,
+.primary-color-with-hover.active {
+  color: rgba(29, 78, 216, 1);
+}

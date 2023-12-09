@@ -1,13 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import './var.css';
 @import './prism.css';
+@import './cat.css';
+@import './typing.css';
+@import './ui.css';
+@import './loader.css';
 
 html {
   --scrollbarBG: #ffffff00;
   --thumbBG: #b8b8b8;
   overflow-y: scroll;
   overflow-x: auto;
+  color: var(--fg-color);
 }
 html::-webkit-scrollbar {
   width: 5px;
@@ -103,4 +109,12 @@ nav {
 
 .sm-cover {
   @apply bg-gradient-to-r from-gray-100 via-gray-100 group-hover:from-gray-200 group-hover:via-gray-200 dark:from-gray-700 dark:via-gray-700 dark:group-hover:from-gray-600 dark:group-hover:via-gray-600 to-transparent;
+}
+
+main article.group p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }

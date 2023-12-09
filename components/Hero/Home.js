@@ -5,12 +5,9 @@ import Social from '../Common/Social.js'
 import { lang } from '@/lib/lang'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import {
-  MailIcon,
-  RssIcon,
-  ClipboardCheckIcon
-} from '@heroicons/react/outline'
+import { MailIcon, RssIcon, ClipboardCheckIcon } from '@heroicons/react/outline'
 import NotionRenderer from '@/components/Post/NotionRenderer'
+import { BigLogo } from '../BigLogo.js'
 
 const Hero = ({ blockMap }) => {
   const [showCopied, setShowCopied] = useState(false)
@@ -27,16 +24,16 @@ const Hero = ({ blockMap }) => {
 
   return (
     <>
-      <div className='container mx-auto flex px-5 py-2 mb-10 md:flex-row flex-col items-center'>
-        <div className='flex flex-col md:w-3/5 md:items-start mb-6 md:mb-0 text-left'>
-          <NotionRenderer
-            className='md:ml-0'
-            blockMap={blockMap}
-            frontMatter={{}}
-            subPageTitle={null}
-          />
+      <div className='container mx-auto flex  py-2 mb-2 md:flex-col flex-col items-center'>
+        <div className='w-full flex justify-center pt-10 pb-2'>
+          <BigLogo />
+        </div>
+        <div className='typing-wrapper'>
+          <div className='typing-text'>离开世界之前，一切都是过程。</div>
+        </div>
+        <div className='w-full flex flex-col md:items-start justify-start mb-6 md:mb-0 text-left'>
           <Social />
-          <div className='flex flex-col sm:flex-row sm:justify-center gap-4 mt-6'>
+          {/* <div className='flex flex-col sm:flex-row sm:justify-center gap-4 mt-6'>
             <Link passHref href='/contact' scroll={false}>
               <button className='w-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 inline-flex py-3 px-5 rounded-lg items-center'>
                 <MailIcon className='inline-block text-gray-600 dark:text-day h-7 w-7 mt-1' />
@@ -44,7 +41,9 @@ const Hero = ({ blockMap }) => {
                   <span className='text-xs text-gray-600 dark:text-day mb-1'>
                     {t.HERO.HOME.CONTACT_BUTTON_DES}
                   </span>
-                  <span className='font-medium'>{t.HERO.HOME.CONTACT_BUTTON}</span>
+                  <span className='font-medium'>
+                    {t.HERO.HOME.CONTACT_BUTTON}
+                  </span>
                 </span>
               </button>
             </Link>
@@ -77,11 +76,11 @@ const Hero = ({ blockMap }) => {
                 </span>
               </button>
             )}
-          </div>
+          </div> */}
         </div>
-        <div className='w-2/5'>
+        {/* <div className='w-2/5'>
           <Avatar className='text-gray-600 dark:text-gray-300' />
-        </div>
+        </div> */}
       </div>
     </>
   )

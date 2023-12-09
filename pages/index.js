@@ -25,6 +25,7 @@ export async function getStaticProps() {
     .map(post => ({
       ...post,
       slug: post.slug || post.title,
+      summary: post.summary || `该篇文章讲了关于${post.title}的内容，点击查看更多吧～`
     }))
 
   const totalPosts = posts.length

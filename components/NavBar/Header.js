@@ -16,6 +16,7 @@ import ThemeSwitcher from './ThemeSwitcher.js'
 import LangSwitcher from './LangSwitcher.js'
 import Logo from '@/components/Common/Logo'
 import { motion } from 'framer-motion'
+import { Link as ButtonLink } from '@/components/ui/Link'
 
 const NavBar = () => {
   const router = useRouter()
@@ -70,23 +71,19 @@ const NavBar = () => {
   return (
     <motion.div className='flex'>
       {/* Desktop Menu */}
-      <ul className='hidden md:flex md:gap-1'>
+      <ul className='items-center hidden md:flex md:gap-2'>
         {links.map(
           (link) =>
             link.show && (
               <Link passHref href={link.to} key={link.id} scroll={false}>
-                <li
-                  className={`${
-                    activeMenu === link.to ? 'bg-gray-200 dark:bg-gray-700' : ''
-                  } hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg block py-1 px-2 nav`}
+                <ButtonLink
+                  className='font-light'
+                  active={activeMenu === link.to}
                 >
-                  <div className='font-light'>
-                    {link.icon}
-                    <span className='inline-block m-1'>{link.name}</span>
-                  </div>
-                </li>
+                  {link.icon}
+                  <span className='inline-block m-1'>{link.name}</span>
+                </ButtonLink>
               </Link>
-
             )
         )}
       </ul>
@@ -99,7 +96,8 @@ const NavBar = () => {
       {/* Mobile Phone Menu */}
       <div className='md:hidden mr-2 block '>
         <button
-          type='button' aria-label='Menu'
+          type='button'
+          aria-label='Menu'
           onClick={() => setShowMenu((showMenu) => !showMenu)}
           className='hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-lg block p-2 -mr-3 md:pb-3'
         >
@@ -138,13 +136,19 @@ const Header = ({ navBarTitle, fullWidth }) => {
   const useSticky = !BLOG.autoCollapsedNavBar
   const navRef = useRef(/** @type {HTMLDivElement} */ undefined)
   const sentinelRef = useRef(/** @type {HTMLDivElement} */ undefined)
-  const handler = useCallback(([entry]) => {
-    if (useSticky && navRef.current) {
-      navRef.current?.classList.toggle('sticky-nav-full', !entry.isIntersecting)
-    } else {
-      navRef.current?.classList.add('remove-sticky')
-    }
-  }, [useSticky])
+  const handler = useCallback(
+    ([entry]) => {
+      if (useSticky && navRef.current) {
+        navRef.current?.classList.toggle(
+          'sticky-nav-full',
+          !entry.isIntersecting
+        )
+      } else {
+        navRef.current?.classList.add('remove-sticky')
+      }
+    },
+    [useSticky]
+  )
 
   useEffect(() => {
     const sentinelEl = sentinelRef.current
@@ -175,7 +179,7 @@ const Header = ({ navBarTitle, fullWidth }) => {
         <div className='flex items-center'>
           <Link passHref href='/' scroll={false} aria-label={BLOG.title}>
             <motion.div>
-              <Logo className='h-6 hover:text-blue-500 dark:hover:text-blue-500 fill-current' />
+              <Logo className='h-8 hover:text-blue-500 dark:hover:text-blue-500 fill-current rounded-lg' />
             </motion.div>
           </Link>
           {navBarTitle ? (
@@ -192,7 +196,7 @@ const Header = ({ navBarTitle, fullWidth }) => {
                 !showTitle ? 'hidden' : 'hidden xl:block'
               }`}
             >
-              {BLOG.title},{' '}
+              {/* {BLOG.title},{' '} */}
               <span className='font-normal'>{BLOG.description}</span>
             </p>
           )}
