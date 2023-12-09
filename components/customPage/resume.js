@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import BLOG from '@/blog.config'
 import NotionRenderer from '@/components/Post/NotionRenderer'
 
 export default function Resume({ blockMap, authorName }) {
-  const checkPassword = (value) => value === authorName
+  const checkPassword = useCallback(
+    (value) => value === authorName,
+    [authorName]
+  )
   const [hide, setHide] = useState(true)
 
   useEffect(() => {
@@ -15,7 +18,7 @@ export default function Resume({ blockMap, authorName }) {
       )
       setHide(!checkPassword(password))
     } catch (error) {}
-  }, [])
+  }, [checkPassword])
 
   return hide ? (
     <div className='h-screen flex justify-center items-center'>
