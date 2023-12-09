@@ -32,8 +32,11 @@ const BlogPost = ({ post }) => {
               </span>
             </header>
             <div className='flex items-center mb-2 mt-1 gap-1'>
-              {post.tags?.map((tag) => (
-                <span className='flex items-center text-xs text-gray-600 gap-1'>
+              {post.tags?.map((tag, idx) => (
+                <span
+                  key={idx}
+                  className='flex items-center text-xs text-gray-600 gap-1'
+                >
                   <TagIcon className='text-xs' width={16} height={16} />
                   {tag}
                 </span>
