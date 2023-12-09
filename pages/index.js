@@ -24,7 +24,7 @@ export async function getStaticProps() {
     // 如果没有设置 slug，使用 title 代替
     .map(post => ({
       ...post,
-      slug: post.slug || post.title,
+      slug: post.slug || post.id,
       summary: post.summary || `该篇文章讲了关于${post.title}的内容，点击查看更多吧～`
     }))
 

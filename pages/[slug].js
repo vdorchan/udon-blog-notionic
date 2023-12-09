@@ -41,7 +41,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { slug } }) {
   const posts = await getAllPosts({ onlyNewsletter: false })
-  const post = posts.find((t) => t.slug === slug || t.title === slug)
+  const post = posts.find((t) => t.slug === slug || t.id === slug)
 
   try {
     const blockMap = await getPostBlocks(post.id)
