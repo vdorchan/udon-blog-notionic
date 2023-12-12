@@ -47,7 +47,7 @@ export async function getStaticProps() {
   }
 }
 
-const blog = ({ postsToShow, page, showNext, blockMap, categories }) => {
+const Blog = ({ postsToShow, page, showNext, blockMap, categories }) => {
   const [category, setCategory] = useState(null)
   const filteredPosts = useMemo(
     () =>
@@ -73,4 +73,4 @@ const blog = ({ postsToShow, page, showNext, blockMap, categories }) => {
   )
 }
 
-export default blog
+export default Blog
