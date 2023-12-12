@@ -70,7 +70,8 @@ const BLOG = {
     provider: 'supacomments', // leave it empty if you don't need any comment plugin
     supaCommentsConfig: {
       supabaseUrl: 'https://hkyssbhidjpalqsmutxg.supabase.co', // The url of your Supabase instance
-      supabaseAnonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhreXNzYmhpZGpwYWxxc211dHhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDIxMTc0NTIsImV4cCI6MjAxNzY5MzQ1Mn0.eWZr_NKtUELIjw1VPsfo_z7hFWpwzKrsVo22UoI0288' // The anonymous key of your Supabase instance
+      supabaseAnonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhreXNzYmhpZGpwYWxxc211dHhnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDIxMTc0NTIsImV4cCI6MjAxNzY5MzQ1Mn0.eWZr_NKtUELIjw1VPsfo_z7hFWpwzKrsVo22UoI0288' // The anonymous key of your Supabase instance
     },
     utterancesConfig: {
       repo: ''
@@ -78,8 +79,17 @@ const BLOG = {
   },
   isProd: process.env.VERCEL_ENV === 'production', // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
 
-  authorName:  process.env.AUTHOR_NAME,
+  authorName: process.env.AUTHOR_NAME,
   customPages: ['resume'], // use custom layout, add page file in folder (custom)
+
+  categories: {
+    全部: '📝',
+    工具: '🛠',
+    旅行: '✈️',
+    技术: '💻',
+    碎片想法: '💭',
+    管理: '👥'
+  }
 }
 // export default BLOG
 module.exports = BLOG
