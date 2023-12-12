@@ -5,8 +5,8 @@
 }
 
 .typing-text {
-  width: 14em;
-  animation: typing 6s steps(14) infinite,
+  width: 19em;
+  animation: typing 7s steps(19) infinite,
     blink 0.5s step-end infinite alternate;
   white-space: nowrap;
   overflow: hidden;
@@ -20,10 +20,10 @@
     width: 0;
   }
   60% {
-    width: 14em;
+    width: 19em;
   }
   100% {
-    width: 14em;
+    width: 19em;
   }
 }
 
