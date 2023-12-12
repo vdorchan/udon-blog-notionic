@@ -54,7 +54,7 @@ export const CategoriesBar = ({
           const categoryLabel = category || '全部'
 
           return (
-            <li className={classNames(styles.link)}>
+            <li key={categoryLabel} className={classNames(styles.link)}>
               <Button
                 data={category}
                 active={activeLink === category}
