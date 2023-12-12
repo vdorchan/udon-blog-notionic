@@ -9,7 +9,6 @@ export const CategoriesBar = ({
   onChange,
   ...props
 }) => {
-  console.log('==>categories', categories)
   const navRef = useRef()
   const [activeLink, setActiveLink] = useState(null)
 
@@ -30,7 +29,7 @@ export const CategoriesBar = ({
             link.classList.remove('active')
           })
           link.classList.add('active')
-          link.scrollIntoView({ behavior: 'smooth', inline: 'center' })
+          link.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
         })
       })
     }
@@ -44,7 +43,7 @@ export const CategoriesBar = ({
             <li key={category.label} className={classNames(styles.link)}>
               <Button
                 data={category.showAll ? null : category.title}
-                active={activeLink === category}
+                active={activeLink === category.title}
                 onClick={setActiveLink}
               >
                 <div className='mr-2 flex-shrink-0'>{category.icon}</div>
