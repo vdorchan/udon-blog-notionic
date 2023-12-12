@@ -21,7 +21,7 @@ export async function getStaticProps() {
     // return { props: { post: null, blockMap: null } }
   }
 
-  const categories = getAllcategories(posts)
+  const categories = await getAllcategories(posts)
 
   const postsToShow = posts
     .slice(0, BLOG.postsPerPage)

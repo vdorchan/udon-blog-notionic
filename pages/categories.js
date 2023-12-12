@@ -11,7 +11,7 @@ export default function categories({ categories, posts }) {
 export async function getStaticProps() {
   const posts = await getAllPosts({ onlyNewsletter: false })
   const tags = getAllTagsFromPosts(posts)
-  const categories = getAllcategories(posts)
+  const categories = await getAllcategories(posts)
   return {
     props: {
       categories,

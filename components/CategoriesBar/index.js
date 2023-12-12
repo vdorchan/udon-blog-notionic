@@ -2,30 +2,19 @@ import classNames from 'classnames'
 import { useRef, useEffect, useMemo, useState } from 'react'
 import styles from './style.module.css'
 import { Button } from '../Common/Button'
-import { categories as categoriesIcons } from '@/blog.config'
 
 export const CategoriesBar = ({
-  categories: categoriesObj,
+  categories,
   className,
   onChange,
   ...props
 }) => {
+  console.log('==>categories', categories)
   const navRef = useRef()
-  const categories = useMemo(
-    () => [
-      [
-        null,
-        Object.values(categoriesObj).reduce((total, cur) => total + cur),
-        0
-      ],
-      ...Object.entries(categoriesObj)
-    ],
-    [categoriesObj]
-  )
   const [activeLink, setActiveLink] = useState(null)
 
   useEffect(() => {
-    onChange(activeLink)
+    onChange?.(activeLink)
   }, [activeLink])
 
   useEffect(() => {
@@ -50,21 +39,17 @@ export const CategoriesBar = ({
   return (
     <nav className={classNames(styles.nav, className)} ref={navRef} {...props}>
       <ul className={classNames(styles.container, 'gap-4 text-lg')}>
-        {categories.map(([category, count]) => {
-          const categoryLabel = category || '全部'
-
+        {categories.map((category) => {
           return (
-            <li key={categoryLabel} className={classNames(styles.link)}>
+            <li key={category.label} className={classNames(styles.link)}>
               <Button
-                data={category}
+                data={category.showAll ? null : category.title}
                 active={activeLink === category}
                 onClick={setActiveLink}
               >
-                <div className='mr-2 flex-shrink-0'>
-                  {categoriesIcons[categoryLabel]}
-                </div>
-                {categoryLabel}
-                <div className='ml-2'>({count})</div>
+                <div className='mr-2 flex-shrink-0'>{category.icon}</div>
+                {category.title}
+                <div className='ml-2'>({category.count})</div>
               </Button>
             </li>
           )

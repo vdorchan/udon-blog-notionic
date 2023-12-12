@@ -80,16 +80,7 @@ const BLOG = {
   isProd: process.env.VERCEL_ENV === 'production', // distinguish between development and production environment (ref: https://vercel.com/docs/environment-variables#system-environment-variables)
 
   authorName: process.env.AUTHOR_NAME,
-  customPages: ['resume'], // use custom layout, add page file in folder (custom)
-
-  categories: {
-    全部: '📝',
-    工具: '🛠',
-    旅行: '✈️',
-    技术: '💻',
-    碎片想法: '💭',
-    管理: '👥'
-  }
+  customPages: ['resume'] // use custom layout, add page file in folder (custom)
 }
 // export default BLOG
 module.exports = BLOG
