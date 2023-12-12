@@ -79,7 +79,7 @@ const NavBar = () => {
   return (
     <motion.div className='flex'>
       {/* Desktop Menu */}
-      <ul className='items-center hidden md:flex md:gap-2'>
+      <ul className='items-center hidden md:flex md:gap-4'>
         {links.map(
           (link) =>
             link.show && (
