@@ -3,7 +3,7 @@ import BLOG from '@/blog.config'
 
 const Scripts = () => (
   <>
-    <script src="https://cdn.staticfile.org/twikoo/1.6.26/twikoo.all.min.js"></script>
+    <script async src="https://cdn.staticfile.org/twikoo/1.6.26/twikoo.all.min.js"></script>
     {BLOG.analytics && BLOG.analytics.provider === 'cf' && (
       <Script
         src={BLOG.analytics.cfConfig.scriptUrl}
