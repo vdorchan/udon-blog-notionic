@@ -45,6 +45,9 @@ html::-webkit-scrollbar-thumb {
 .sticky-nav.fixed-top {
   transition: all 0.2s linear;
 }
+.sticky-nav.in-top {
+  backdrop-filter: unset;
+}
 
 .remove-sticky {
   position: unset;

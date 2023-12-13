@@ -151,6 +151,7 @@ const Header = ({ navBarTitle, fullWidth, fixedTop }) => {
     if (fixedTop && navRef.current) {
       const nav = navRef.current
       let prevScrollpos = window.pageYOffset
+      setInTop(window.pageYOffset === 0)
       function onScroll() {
         const currentScrollPos = window.pageYOffset
         if (prevScrollpos > currentScrollPos) {
@@ -172,20 +173,16 @@ const Header = ({ navBarTitle, fullWidth, fixedTop }) => {
 
   const handler = useCallback(
     ([entry]) => {
-      if (fixedTop) {
-        navRef.current?.classList.toggle('dark')
-        return
-      }
       if (useSticky && navRef.current) {
         navRef.current?.classList.toggle(
           'sticky-nav-full',
-          !entry.isIntersecting
+          fixedTop || !entry.isIntersecting
         )
       } else {
         navRef.current?.classList.add('remove-sticky')
       }
     },
-    [useSticky]
+    [useSticky, fixedTop]
   )
 
   useEffect(() => {
@@ -203,7 +200,7 @@ const Header = ({ navBarTitle, fullWidth, fixedTop }) => {
     return () => {
       sentinelEl && observer.unobserve(sentinelEl)
     }
-  }, [handler, sentinelRef])
+  }, [handler, sentinelRef, fixedTop])
 
   return (
     <>
@@ -215,9 +212,9 @@ const Header = ({ navBarTitle, fullWidth, fixedTop }) => {
         className={classNames(
           'sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center py-8 bg-opacity-60',
           !fullWidth ? 'max-w-3xl px-4' : 'px-4 md:px-24',
-          fixedTop && 'fixed-top sticky-nav-full',
+          fixedTop && 'fixed-top',
           !fixedTop && 'mb-2 md:mb-12',
-          !inTop && 'bg-white dark'
+          fixedTop && (inTop ? 'dark in-top' : 'bg-white')
         )}
         id='sticky-nav'
         ref={navRef}
