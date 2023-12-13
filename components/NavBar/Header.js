@@ -85,10 +85,7 @@ const NavBar = () => {
           (link) =>
             link.show && (
               <Link passHref href={link.to} key={link.id} scroll={false}>
-                <ButtonLink
-                  className='font-light'
-                  active={activeMenu === link.to}
-                >
+                <ButtonLink active={activeMenu === link.to}>
                   {link.icon}
                   <span className='inline-block m-1'>{link.name}</span>
                 </ButtonLink>

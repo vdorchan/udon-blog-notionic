@@ -8,6 +8,14 @@
 @import './ui.css';
 @import './loader.css';
 
+@font-face {
+  font-family: 'Raleway';
+  src: url('./Raleway-VariableFont_wght.ttf');
+}
+.font-raleway {
+  font-family: Raleway;
+}
+
 html {
   --scrollbarBG: #ffffff00;
   --thumbBG: #b8b8b8;
@@ -40,6 +48,11 @@ html::-webkit-scrollbar-thumb {
   backdrop-filter: blur(5px);
   transition: all 0.5s cubic-bezier(0.4, 0, 0, 1);
   border-bottom-color: transparent;
+  font-family: Raleway, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Noto Color Emoji, Noto Sans CJK JP, Noto Sans JP;
+  font-weight: 600;
 }
 
 .sticky-nav.fixed-top {

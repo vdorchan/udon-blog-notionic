@@ -3,7 +3,7 @@ import BLOG from '@/blog.config'
 
 const Social = () => {
   return (
-    <div className='flex gap-1 items-center'>
+    <div className='flex gap-1 items-center font-raleway'>
       🌐
       <div>:</div>
       <Link
