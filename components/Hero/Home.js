@@ -29,7 +29,7 @@ const Hero = ({ blockMap }) => {
           <BigLogo />
         </div>
         <div className='typing-wrapper'>
-          <div className='typing-text'>我们因那些生活中值得记忆的日子而存在。</div>
+          <div className='typing-text'>「我们因那些生活中值得记忆的日子而存在」</div>
         </div>
         <div className='w-full flex flex-col md:items-start justify-start mb-6 md:mb-0 text-left'>
           <Social />
