@@ -6,11 +6,13 @@ import { getAllPosts, getAllcategories, getPostBlocks } from '@/lib/notion'
 import BLOG from '@/blog.config'
 import { CategoriesBar } from '@/components/CategoriesBar'
 import { useMemo, useState } from 'react'
+import filterPublishedPosts from '@/lib/notion/filterPublishedPosts'
 
 export async function getStaticProps() {
-  const posts = await getAllPosts({ onlyPost: true })
+  // 全量 post
+  const posts = await getAllPosts()
 
-  const heros = await getAllPosts({ onlyHidden: true })
+  const heros = filterPublishedPosts({ posts, onlyHidden: true })
   const hero = heros.find((t) => t.slug === 'index')
 
   let blockMap
@@ -23,7 +25,7 @@ export async function getStaticProps() {
 
   const categories = await getAllcategories(posts)
 
-  const postsToShow = posts
+  const postsToShow = filterPublishedPosts({ posts, onlyPost: true })
     .slice(0, BLOG.postsPerPage)
     // 如果没有设置 slug，使用 title 代替
     .map((post) => ({

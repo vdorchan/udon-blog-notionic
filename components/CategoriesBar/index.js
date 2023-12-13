@@ -40,7 +40,7 @@ export const CategoriesBar = ({
       <ul className={classNames(styles.container, 'gap-4 text-lg')}>
         {categories.map((category) => {
           return (
-            <li key={category.label} className={classNames(styles.link)}>
+            <li key={category.title} className={classNames(styles.link)}>
               <Button
                 data={category.showAll ? null : category.title}
                 active={activeLink === category.title}

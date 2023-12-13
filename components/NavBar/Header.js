@@ -18,6 +18,7 @@ import LangSwitcher from './LangSwitcher.js'
 import Logo from '@/components/Common/Logo'
 import { motion } from 'framer-motion'
 import { Link as ButtonLink } from '@/components/ui/Link'
+import classNames from 'classnames'
 
 const NavBar = () => {
   const router = useRouter()
@@ -139,13 +140,42 @@ const NavBar = () => {
   )
 }
 
-const Header = ({ navBarTitle, fullWidth }) => {
+const Header = ({ navBarTitle, fullWidth, fixedTop }) => {
   const [showTitle, setShowTitle] = useState(false)
   const useSticky = !BLOG.autoCollapsedNavBar
   const navRef = useRef(/** @type {HTMLDivElement} */ undefined)
   const sentinelRef = useRef(/** @type {HTMLDivElement} */ undefined)
+  const [inTop, setInTop] = useState(true)
+
+  useEffect(() => {
+    if (fixedTop && navRef.current) {
+      const nav = navRef.current
+      let prevScrollpos = window.pageYOffset
+      function onScroll() {
+        const currentScrollPos = window.pageYOffset
+        if (prevScrollpos > currentScrollPos) {
+          nav.style.top = '0'
+        } else {
+          nav.style.top = '-64px'
+        }
+        prevScrollpos = currentScrollPos
+        setInTop(window.pageYOffset === 0)
+      }
+
+      window.addEventListener('scroll', onScroll)
+
+      return () => {
+        window.removeEventListener('scroll', onScroll)
+      }
+    }
+  }, [])
+
   const handler = useCallback(
     ([entry]) => {
+      if (fixedTop) {
+        navRef.current?.classList.toggle('dark')
+        return
+      }
       if (useSticky && navRef.current) {
         navRef.current?.classList.toggle(
           'sticky-nav-full',
@@ -174,13 +204,21 @@ const Header = ({ navBarTitle, fullWidth }) => {
       sentinelEl && observer.unobserve(sentinelEl)
     }
   }, [handler, sentinelRef])
+
   return (
     <>
-      <div className='observer-element h-4 md:h-12' ref={sentinelRef}></div>
       <div
-        className={`sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center mb-2 md:mb-12 py-8 bg-opacity-60 ${
-          !fullWidth ? 'max-w-3xl px-4' : 'px-4 md:px-24'
-        }`}
+        className={classNames('observer-element', !fixedTop && 'h-4 md:h-12')}
+        ref={sentinelRef}
+      ></div>
+      <div
+        className={classNames(
+          'sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center py-8 bg-opacity-60',
+          !fullWidth ? 'max-w-3xl px-4' : 'px-4 md:px-24',
+          fixedTop && 'fixed-top sticky-nav-full',
+          !fixedTop && 'mb-2 md:mb-12',
+          !inTop && 'bg-white dark'
+        )}
         id='sticky-nav'
         ref={navRef}
       >

@@ -9,6 +9,8 @@ import Comments from '@/components/Post/Comments'
 import PostFooter from '@/components/Post/PostFooter'
 import { useRouter } from 'next/router'
 import { pagesShow } from '@/blog.config'
+import Image from 'next/image'
+import { PostHeader } from '@/components/PostHeader'
 
 const pageHideComment = Object.keys(pagesShow).concat(['about'])
 
@@ -36,34 +38,37 @@ const Layout = ({
   }, [frontMatter, pageTitle, subPage])
 
   return (
-    <Container
-      title={`${frontMatter.title}${
-        frontMatter.title === pageTitle ? '' : ' | ' + pageTitle
-      }`}
-      description={frontMatter.summary}
-      // date={new Date(frontMatter.publishedAt).toISOString()}
-      type='article'
-      fullWidth={fullWidth}
-    >
-      <motion.div className='flex flex-row'>
-        <Content
-          frontMatter={frontMatter}
-          blockMap={blockMap}
-          pageTitle={showSubPageTitle ? pageTitle : null}
-        />
-        <Aside
-          frontMatter={frontMatter}
-          blockMap={blockMap}
-          pageTitle={showSubPageTitle ? pageTitle : null}
-        />
-      </motion.div>
-      {!hideComment && (
-        <>
-          <PostFooter />
-          <Comments frontMatter={frontMatter} />
-        </>
-      )}
-    </Container>
+    <>
+      <PostHeader frontMatter={frontMatter} />
+      <Container
+        title={`${frontMatter.title}${
+          frontMatter.title === pageTitle ? '' : ' | ' + pageTitle
+        }`}
+        description={frontMatter.summary}
+        // date={new Date(frontMatter.publishedAt).toISOString()}
+        type='article'
+        fullWidth={fullWidth}
+      >
+        <motion.div className='flex flex-row'>
+          <Content
+            frontMatter={frontMatter}
+            blockMap={blockMap}
+            pageTitle={showSubPageTitle ? pageTitle : null}
+          />
+          <Aside
+            frontMatter={frontMatter}
+            blockMap={blockMap}
+            pageTitle={showSubPageTitle ? pageTitle : null}
+          />
+        </motion.div>
+        {!hideComment && (
+          <>
+            <PostFooter />
+            <Comments frontMatter={frontMatter} />
+          </>
+        )}
+      </Container>
+    </>
   )
 }
 

@@ -42,6 +42,10 @@ html::-webkit-scrollbar-thumb {
   border-bottom-color: transparent;
 }
 
+.sticky-nav.fixed-top {
+  transition: all 0.2s linear;
+}
+
 .remove-sticky {
   position: unset;
 }
