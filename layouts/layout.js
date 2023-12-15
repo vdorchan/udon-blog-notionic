@@ -12,7 +12,7 @@ import { pagesShow } from '@/blog.config'
 import Image from 'next/image'
 import { PostHeader } from '@/components/PostHeader'
 
-const pageHideComment = Object.keys(pagesShow).concat(['about'])
+const pageHideComment = Object.keys(pagesShow)
 
 const Layout = ({
   blockMap,
