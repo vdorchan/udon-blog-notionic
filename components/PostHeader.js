@@ -4,7 +4,7 @@ import TagItem from './Common/TagItem'
 
 export const PostHeader = ({ frontMatter }) => {
   return (
-    <header className='w-full relative  z-0 row'>
+    <header className='w-full relative z-0 row mb-4'>
       <div
         className='absolute w-full'
         style={{ top: '-5.5rem', height: 'calc(100% + 5.5rem)' }}

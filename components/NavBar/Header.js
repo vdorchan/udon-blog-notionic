@@ -166,14 +166,15 @@ const Header = ({ navBarTitle, fullWidth, fixedTop }) => {
         window.removeEventListener('scroll', onScroll)
       }
     }
-  }, [])
+  }, [fixedTop])
 
   const handler = useCallback(
     ([entry]) => {
+      if (fixedTop) return
       if (useSticky && navRef.current) {
         navRef.current?.classList.toggle(
           'sticky-nav-full',
-          fixedTop || !entry.isIntersecting
+          !entry.isIntersecting
         )
       } else {
         navRef.current?.classList.add('remove-sticky')
@@ -197,7 +198,9 @@ const Header = ({ navBarTitle, fullWidth, fixedTop }) => {
     return () => {
       sentinelEl && observer.unobserve(sentinelEl)
     }
-  }, [handler, sentinelRef, fixedTop])
+  }, [handler, sentinelRef])
+
+  // console.log(fixedTop, inTop,fixedTop && (inTop ? 'dark in-top' : 'bg-white') )
 
   return (
     <>
@@ -209,9 +212,10 @@ const Header = ({ navBarTitle, fullWidth, fixedTop }) => {
         className={classNames(
           'sticky-nav m-auto w-full h-6 flex flex-row justify-between items-center py-8 bg-opacity-60',
           !fullWidth ? 'max-w-3xl px-4' : 'px-4 md:px-24',
-          fixedTop && 'fixed-top',
+          fixedTop && 'fixed-top sticky-nav-full',
           !fixedTop && 'mb-2 md:mb-12',
-          fixedTop && (inTop ? 'dark in-top' : 'bg-white')
+          fixedTop && (inTop ? 'in-top' : 'bg-white'),
+          navBarTitle && fixedTop && inTop && 'dark'
         )}
         id='sticky-nav'
         ref={navRef}
