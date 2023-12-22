@@ -1,12 +1,12 @@
-import Container from '@/components/Container'
+import BLOG from '@/blog.config'
 import BlogPost from '@/components/BlogPost'
+import { CategoriesBar } from '@/components/CategoriesBar'
+import Container from '@/components/Container'
 import Hero from '@/components/Hero/Home'
 import Pagination from '@/components/Pagination'
 import { getAllPosts, getAllcategories, getPostBlocks } from '@/lib/notion'
-import BLOG from '@/blog.config'
-import { CategoriesBar } from '@/components/CategoriesBar'
-import { useMemo, useState } from 'react'
 import filterPublishedPosts from '@/lib/notion/filterPublishedPosts'
+import { useMemo, useState } from 'react'
 
 export async function getStaticProps() {
   // 全量 post

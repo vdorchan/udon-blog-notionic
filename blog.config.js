@@ -15,6 +15,10 @@ const BLOG = {
   since: 2022, // If leave this empty, current year will be used.
   postsPerPage: 10,
   sortByDate: true,
+  sortBy: {
+    date: 'descending',
+    featured: 'descending'
+  },
   pagesShow: {
     newsletter: false,
     notes: false,
