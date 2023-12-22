@@ -1,7 +1,7 @@
 import classNames from 'classnames'
-import { useRef, useEffect, useMemo, useState } from 'react'
-import styles from './style.module.css'
+import { useEffect, useRef, useState } from 'react'
 import { Button } from '../Common/Button'
+import styles from './style.module.css'
 
 export const CategoriesBar = ({
   categories,
@@ -14,22 +14,21 @@ export const CategoriesBar = ({
 
   useEffect(() => {
     onChange?.(activeLink)
-  }, [activeLink])
+  }, [activeLink, onChange])
 
   useEffect(() => {
     const nav = navRef.current
     if (nav) {
       // xxx: 后续改写
       let navLinks = nav.querySelectorAll('li')
-      let activeLink = navLinks[0]
 
       navLinks.forEach(function (link) {
         link.addEventListener('click', (event) => {
-          navLinks.forEach(function (link) {
-            link.classList.remove('active')
+          link.scrollIntoView({
+            behavior: 'smooth',
+            inline: 'center',
+            block: 'nearest'
           })
-          link.classList.add('active')
-          link.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
         })
       })
     }
@@ -39,11 +38,12 @@ export const CategoriesBar = ({
     <nav className={classNames(styles.nav, className)} ref={navRef} {...props}>
       <ul className={classNames(styles.container, 'gap-4 text-lg')}>
         {categories.map((category) => {
+          const id = category.showAll ? null : category.title
           return (
             <li key={category.title} className={classNames(styles.link)}>
               <Button
-                data={category.showAll ? null : category.title}
-                active={activeLink === category.title}
+                data={id}
+                active={activeLink === id}
                 onClick={setActiveLink}
               >
                 <div className='mr-2 flex-shrink-0'>{category.icon}</div>

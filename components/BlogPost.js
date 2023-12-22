@@ -1,7 +1,7 @@
 import BLOG from '@/blog.config'
-import Link from 'next/link'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
+import Link from 'next/link'
 
 import FormattedDate from '@/components/Common/FormattedDate'
 import { TagIcon } from '@heroicons/react/outline'
@@ -36,7 +36,7 @@ const BlogPost = ({ post }) => {
               {post.tags?.map((tag, idx) => (
                 <span
                   key={idx}
-                  className='flex items-center text-xs text-gray-600 gap-1'
+                  className='flex items-center text-xs text-gray-600 gap-1 dark:text-gray-400'
                 >
                   <TagIcon className='text-xs' width={16} height={16} />
                   {tag}

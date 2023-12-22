@@ -1,3 +1,7 @@
+:root {
+  --print-content-font-size: 8pt;
+  --print-content-line-height: 2;
+}
 .print body {
   background: rgb(238, 174, 202);
   background: radial-gradient(
@@ -12,9 +16,9 @@
 .print .print-content {
   background-color: #fff;
   size: A4;
-  line-height: 1.4;
+  line-height: var(--print-content-line-height);
   margin-top: 30px;
-  font-size: 10pt;
+  font-size: var(--print-content-font-size);
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -26,14 +30,14 @@
   box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
 }
 .print .notion-spacer {
-  width: 12pt;
-  margin-right: 12pt;
+  width: 8pt;
+  margin-right: 8pt;
 }
 @media print {
   .print .print-content {
     border: none;
     margin-top: 0;
-    box-shadow: none;
+    box-shadow: unset!important;
     border-radius: 0;
   }
   .print body {
@@ -55,8 +59,8 @@
 .print .notion-quote,
 .print .notion-h-title,
 .print .notion-list {
-  line-height: 1.4;
-  font-size: 10pt;
+  line-height: var(--print-content-line-height);
+  font-size: var(--print-content-font-size);
   color: #000;
 }
 .print .notion-text,
@@ -93,9 +97,9 @@
   color: #fff;
 }
 .print .notion-block-0853323313e94175a7dc374ce8d36f53 > div:nth-child(3) {
-  padding-top: 4mm;
-  padding-bottom: 1mm;
+  padding-top: 2mm;
   font-size: 11pt;
+  line-height: 1.5;
 }
 .print
   .notion-block-0853323313e94175a7dc374ce8d36f53
@@ -106,6 +110,8 @@
 }
 .print .notion-block-0853323313e94175a7dc374ce8d36f53 > div:nth-child(4) {
   padding-bottom: 4mm;
+  margin: -2px!important;
+  padding-top: 2px!important;
 }
 .print .notion-blank {
   min-height: 6pt;
@@ -150,4 +156,12 @@
 .print .sticky-nav, 
 .print .footer {
   display: none;
+}
+.print .notion-quote {
+  padding-left: 4pt;
+  color: var(--notion-gray);
+}
+.print .notion-link {
+  background: none!important;
+  border: unset!important;
 }
