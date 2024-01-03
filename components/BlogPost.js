@@ -31,7 +31,7 @@ const BlogPost = ({ post }) => {
                 {post.title}
               </h2>
               <span className='text-sm text-color-fix font-light flex-shrink-0 text-gray-600 dark:text-gray-300 font-serif italic'>
-                <span>Posted by on </span>
+                <span>Posted by udonchan on </span>
                 <FormattedDate date={post.date} />
               </span>
             </header>

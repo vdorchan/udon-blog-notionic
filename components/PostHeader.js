@@ -32,7 +32,7 @@ export const PostHeader = ({ frontMatter }) => {
           {frontMatter.title}
         </h2>
         <span className='text-sm text-color-fix font-light flex-shrink-0 text-gray-50 dark:text-gray-300 font-serif italic'>
-          <span>Posted by on </span>
+          <span>Posted by udonchan on </span>
           <FormattedDate date={frontMatter.date} />
         </span>
       </div>
