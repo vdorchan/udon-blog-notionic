@@ -16,7 +16,7 @@ export const PostHeader = ({ frontMatter }) => {
           className='w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200 brightness-50	'
         />
       </div>
-      <div className='max-w-5xl m-auto flex flex-col items-start pt-20 pb-36 relative pl-40'>
+      <div className='max-w-5xl m-auto flex flex-col items-start pt-20 pb-36 relative pl-32'>
         {frontMatter.type[0] !== 'Page' && (
           <nav className='flex mb-2 items-start text-gray-500 dark:text-gray-400'>
             {frontMatter.tags && (

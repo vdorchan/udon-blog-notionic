@@ -1,5 +1,5 @@
-import SEO from '@/components/Common/SEO'
 import BLOG from '@/blog.config'
+import SEO from '@/components/Common/SEO'
 import PropTypes from 'prop-types'
 
 const Container = ({ children, fullWidth, ...customMeta }) => {
@@ -13,7 +13,7 @@ const Container = ({ children, fullWidth, ...customMeta }) => {
       <SEO meta={meta} />
       <main
         className={`m-auto flex-grow w-full transition-all ${
-          !fullWidth ? 'max-w-2xl px-4' : 'px-4 md:px-24'
+          !fullWidth ? 'max-w-3xl px-4' : 'px-4 md:px-24'
         }`}
       >
         {children}
