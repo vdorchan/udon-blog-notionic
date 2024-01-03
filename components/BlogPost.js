@@ -7,6 +7,9 @@ import FormattedDate from '@/components/Common/FormattedDate'
 import { TagIcon } from '@heroicons/react/outline'
 
 const BlogPost = ({ post }) => {
+  // if no tags, use category
+  const tags = post.tags?.length ? post.tags : post.category
+
   return (
     <motion.div>
       <Link passHref href={`${BLOG.path}/${post.slug}`} scroll={false}>
@@ -33,7 +36,7 @@ const BlogPost = ({ post }) => {
               </span>
             </header>
             <div className='flex items-center mb-2 mt-1 gap-1'>
-              {post.tags?.map((tag, idx) => (
+              {tags?.map((tag, idx) => (
                 <span
                   key={idx}
                   className='flex items-center text-xs text-gray-600 gap-1 dark:text-gray-400'
